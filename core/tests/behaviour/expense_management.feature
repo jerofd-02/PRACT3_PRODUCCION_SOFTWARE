@@ -45,5 +45,25 @@ Feature: Gestión de gastos
     When añado un gasto de 10 euros llamado Comida
     And añado un gasto de 30 euros llamado Gasolina
     And añado un gasto de 30 euros llamado Suscripciones
-    And elimino el gasto con id 2
+    And elimino el gasto con id 3
     Then el total de dinero gastado debe ser 40 euros
+
+  Scenario: Crear un gasto de título "Videojuegos" y comprobar que se crea correctamente
+    Given un gestor de gastos vacío
+    When añado un gasto de 10 euros llamado Videojuegos
+    Then debe haber un gasto de nombre Videojuegos
+
+  Scenario: Crear un gasto de 10 euros y actualizar el gasto a 15 euros
+    Given un gestor de gastos vacío
+    When añado un gasto de 10 euros llamado Pantalones
+    And actualizo el gasto con id 1 a 15 euros
+    Then el total de dinero gastado debe ser 15 euros
+
+  Scenario: Crear tres gastos de 10 euros y eliminar el segundo y actualizar el gasto del último a 15 euros, la suma son 25 euros
+    Given un gestor de gastos vacío
+    When añado un gasto de 10 euros llamado Pantalones
+    When añado un gasto de 10 euros llamado Videojuegos
+    When añado un gasto de 10 euros llamado Suscripciones
+    And elimino el gasto con id 2
+    And actualizo el gasto con id 3 a 15 euros
+    Then el total de dinero gastado debe ser 25 euros
